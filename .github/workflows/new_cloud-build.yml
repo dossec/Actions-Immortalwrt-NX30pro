@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3 # Optimized to use a more specific version
+      uses: actions/checkout@v4 # Optimized to use a more specific version
 
     - name: Initialization environment
       env:
@@ -107,7 +107,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware directory
-      uses: actions/upload-artifact@v3 # Optimized to use a more specific version
+      uses: actions/upload-artifact@v4 # Optimized to use a more specific version
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
@@ -123,7 +123,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1 # Optimized to use a more specific version
+      uses: softprops/action-gh-release@v2 # Optimized to use a more specific version
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.CLOUD }}
@@ -133,7 +133,7 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@v1 # Optimized to use a more specific version
+      uses: Mattraks/delete-workflow-runs@v2 # Optimized to use a more specific version
       with:
         retain_days: 0
         keep_minimum_runs: 2
