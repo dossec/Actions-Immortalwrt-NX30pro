@@ -1,4 +1,4 @@
-name: new_cloud-build
+name: clean_cloud-build
 
 on:
   repository_dispatch:
