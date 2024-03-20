@@ -18,3 +18,7 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+
+# drop mosdns and v2ray-geodata packages that come with the source 删除源代码附带的 modns 和 v2ray-Geodata 包
+find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+find ./ | grep Makefile | grep mosdns | xargs rm -f
