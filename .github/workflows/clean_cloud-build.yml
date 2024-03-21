@@ -107,7 +107,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Calculate MD5 [计算MD5]
-      if: steps.checkNeed.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success'
       run: |
         cd ${{ env.FIRMWARE }} && rm -rf sha256sums
         MD5=$(md5sum * | awk '{ print $2 " " $1 }' | sed ':a;N;$!ba;s/\n/<br>/g')
@@ -131,7 +131,7 @@ jobs:
 
     - name: Prepare release tag
       id: release_tag
-      if: steps.checkNeed.outputs.status == 'success'
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         DATE_PREFIX=$(date +%y%m%d)
         echo "::set-output name=date_prefix::${DATE_PREFIX}"
@@ -150,7 +150,7 @@ jobs:
     - name: Upload OpenWrt Firmware to Release [Release发布]
       id: release
       uses: ncipollo/release-action@v1
-      if: steps.checkNeed.outputs.status == 'success' && steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: steps.release_tag.outputs.status == 'success' && !cancelled()
       with:
           name: R${{ steps.organize.outputs.release_tag }}-${{ env.LAST_SHORT_HASH }}
           allowUpdates: true
@@ -176,7 +176,7 @@ jobs:
             > ${{ env.MD5 }}
 
     - name: Update latest tag
-      if: steps.checkNeed.outputs.status == 'success'
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         git config --local user.email "yxw17688098359@gmail.com"
         git config --local user.name "Axiu"
