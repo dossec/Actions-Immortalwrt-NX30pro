@@ -150,7 +150,7 @@ jobs:
     - name: Upload OpenWrt Firmware to Release [Release发布]
       id: release
       uses: ncipollo/release-action@v1
-      if: steps.release_tag.outputs.status == 'success' && !cancelled()
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
           name: R${{ steps.organize.outputs.release_tag }}-${{ env.LAST_SHORT_HASH }}
           allowUpdates: true
