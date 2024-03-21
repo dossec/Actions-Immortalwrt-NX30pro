@@ -106,13 +106,6 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: Calculate MD5 [计算MD5]
-      if: steps.compile.outputs.status == 'success'
-      run: |
-        cd ${{ env.FIRMWARE }} && rm -rf sha256sums
-        MD5=$(md5sum * | awk '{ print $2 " " $1 }' | sed ':a;N;$!ba;s/\n/<br>/g')
-        echo "MD5=$MD5" >> $GITHUB_ENV
-
     - name: Upload firmware directory
       uses: actions/upload-artifact@v4 # Optimized to use a more specific version
       if: steps.organize.outputs.status == 'success' && !cancelled()
@@ -120,71 +113,24 @@ jobs:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-#    - name: Generate release tag
-#      id: tag
-#      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-#      run: |
-#        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
-#        touch release.txt
-#        [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
-#        echo "status=success" >> $GITHUB_OUTPUT
-
-    - name: Prepare release tag
-      id: release_tag
+    - name: Generate release tag
+      id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        DATE_PREFIX=$(date +%y%m%d)
-        echo "::set-output name=date_prefix::${DATE_PREFIX}"
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        touch release.txt
+        [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
 
-
-#    - name: Upload firmware to release
-#      uses: softprops/action-gh-release@v2 # Optimized to use a more specific version
-#      if: steps.tag.outputs.status == 'success' && !cancelled()
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.CLOUD }}
-#      with:
-#        tag_name: ${{ steps.tag.outputs.release_tag }}
-#        body_path: release.txt
-#        files: ${{ env.FIRMWARE }}/*
-
-    - name: Upload OpenWrt Firmware to Release [Release发布]
-      id: release
-      uses: ncipollo/release-action@v1
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
-      with:
-          name: R${{ steps.organize.outputs.release_tag }}-${{ env.LAST_SHORT_HASH }}
-          allowUpdates: true
-          removeArtifacts: true
-          tag: ${{ steps.release_tag.outputs.date_prefix }}-${{ env.LAST_SHORT_HASH }}
-          commit: main
-          token: ${{ secrets.CLOUD }}
-          artifacts: ${{ env.FIRMWARE }}/*
-          body: |
-            - 本项目是基于Hanwckf源代码编译大分区固件，使用默认配置，**适用于H3C-NX30Pro设备**，纯净版无任何第三方软件包。
-            - 本项目每日17时自动查询是否需要编译最新源码，如更新完成将在本页面自动顶置最新版本。
-            - 历史版本将自动保留在下方。
-            - 默认IP：192.168.1.1
-            - 默认账号：root
-            - 默认密码：(空)
-            - Head Hash比对 当前:${{ env.LAST_SHORT_HASH }} / 源码更新详情[点击这里查看](${{ env.REPO_URL }}/commits/${{ env.REPO_BRANCH }})
-            - **请仔细检查MD5以确保完整性后再进行刷入！**
-            - 刷入前请使用237的大分区uboot，传送门https://github.com/Axiu0823/Actions-OpenWrt/blob/main/237%E5%A4%A7%E5%88%86%E5%8C%BA%E5%9B%BA%E4%BB%B6/uboot-112m.bin
-            - 升级更新选择sysupgrade.bin,出厂设置请刷factory.bin。
-            - 升级前先下载备份，升级后还原备份后重新安装需要的插件即可。
-
-            `md5信息`
-            > ${{ env.MD5 }}
-
-    - name: Update latest tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-      run: |
-        git config --local user.email "yxw17688098359@gmail.com"
-        git config --local user.name "Axiu"
-        git pull --unshallow
-        git tag -f latest ${{ steps.release_tag.outputs.date_prefix }}-${{ env.LAST_SHORT_HASH }}
-        git push origin --tags -f
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@v2 # Optimized to use a more specific version
+      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GH_TOKEN: ${{ secrets.CLOUD }}
+        GITHUB_TOKEN: ${{ secrets.CLOUD }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2 # Optimized to use a more specific version
