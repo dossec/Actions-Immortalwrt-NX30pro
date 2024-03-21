@@ -120,6 +120,7 @@ jobs:
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
+        
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
@@ -149,6 +150,7 @@ jobs:
           `md5信息`
           > ${{ env.MD5 }}
         files: ${{ env.FIRMWARE }}/*
+
 
 
     - name: Delete workflow runs
