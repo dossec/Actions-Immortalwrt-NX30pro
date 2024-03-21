@@ -32,4 +32,4 @@ find ./ | grep Makefile | grep mosdns | xargs rm -f
 # Add a mosdns 添加mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-make package/mosdns/luci-app-mosdns/compile V=s
+#make package/mosdns/luci-app-mosdns/compile V=s
