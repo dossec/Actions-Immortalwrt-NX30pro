@@ -27,9 +27,9 @@
 #sed -i "s/OpenWrt /Kinoko build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
 
 # drop mosdns and v2ray-geodata packages that come with the source 删除源代码附带的 modns 和 v2ray-Geodata 包
-find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-find ./ | grep Makefile | grep mosdns | xargs rm -f
+#find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+#find ./ | grep Makefile | grep mosdns | xargs rm -f
 # Add a mosdns 添加mosdns
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+#git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+#git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 #make package/mosdns/luci-app-mosdns/compile V=s
