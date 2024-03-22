@@ -149,8 +149,7 @@ jobs:
           - 升级前先下载备份，升级后还原备份后重新安装需要的插件即可。
           `md5信息`
           > ${{ env.MD5 }}
-        files: |
-          ${{ env.FIRMWARE }}/*
+        files: ${{ env.FIRMWARE }}/*
           
 
 
