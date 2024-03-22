@@ -134,7 +134,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.CLOUD }}
       with:
-        tag_name: NX30pro_112m ${{ steps.tag.outputs.release_tag }}
+        tag_name: science_NX30pro_112m ${{ steps.tag.outputs.release_tag }}
         body: |
           - 本项目是基于Hanwckf源代码编译大分区固件，使用默认配置，**适用于H3C-NX30Pro设备**，添加了第三方包只添加了[adguardhome](https://github.com/kongfl888/luci-app-adguardhome)和[openclash](https://github.com/vernesong/OpenClash/releases)，可以配合mosnds。
           - 历史版本将自动保留在下方。
