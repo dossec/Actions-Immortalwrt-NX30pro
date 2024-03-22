@@ -143,7 +143,7 @@ jobs:
           - 默认密码：(空)
           - 源码更新详情[点击这里查看](https://github.com/hanwckf/immortalwrt-mt798x/commits/openwrt-21.02/)
           - **请仔细检查MD5以确保完整性后再进行刷入！**
-          - 刷入前请使用237的大分区uboot
+          - 刷入前请使用237的大分区uboot[传送门](https://github.com/Axiu0823/Actions-OpenWrt/tree/main/uboot)
           - 升级更新选择sysupgrade.bin,出厂设置请刷factory.bin。
           - 升级前先下载备份，升级后还原备份后重新安装需要的插件即可。
           `md5信息`
