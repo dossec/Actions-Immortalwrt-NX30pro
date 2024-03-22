@@ -145,7 +145,7 @@ jobs:
           - mosdns[传送门](https://github.com/sbwml/luci-app-mosdns/releases)
           - 安装mosdns时请按照v2dat_aarch64_cortex-a53.ipk、mosdns_aarch64_cortex-a53.ipk、luci-app-mosdns_all.ipk、luci-i18n-mosdns-zh-cn_all.ipk的顺序安装，未安装v2dat和mosdns前安装luci-app-mosdns会失败
           - **请仔细检查MD5以确保完整性后再进行刷入！**
-          - 刷入前请使用237的大分区uboot
+          - 刷入前请使用237的大分区uboot[传送门](https://github.com/Axiu0823/Actions-OpenWrt/tree/main/uboot)
           - 升级更新选择sysupgrade.bin,出厂设置请刷factory.bin。
           - 升级前先下载备份，升级后还原备份后重新安装需要的插件即可。
           `md5信息`
