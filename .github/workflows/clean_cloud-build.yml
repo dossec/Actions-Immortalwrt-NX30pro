@@ -91,7 +91,7 @@ jobs:
       run: df -hT
     
     - name: Upload bin directory
-      uses: actions/upload-artifact@v3 # Optimized to use a more specific version
+      uses: actions/upload-artifact@v4 # Optimized to use a more specific version
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
@@ -149,7 +149,9 @@ jobs:
           - 升级前先下载备份，升级后还原备份后重新安装需要的插件即可。
           `md5信息`
           > ${{ env.MD5 }}
-        files: ${{ env.FIRMWARE }}/*
+        files: |
+          ${{ env.FIRMWARE }}/*
+          
 
 
 
