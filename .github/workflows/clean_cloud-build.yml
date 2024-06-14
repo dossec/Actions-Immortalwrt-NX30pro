@@ -9,8 +9,8 @@ env:
   REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: clean.config
-  DIY_P1_SH: clean_diy-part1.sh
-  DIY_P2_SH: clean_diy-part2.sh
+  DIY_P1_SH:  clean_diy-part1.sh
+  DIY_P2_SH:  clean_diy-part2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -89,7 +89,7 @@ jobs:
     - name: Check space usage
       if: (!cancelled())
       run: df -hT
-    
+
     - name: Upload bin directory
       uses: actions/upload-artifact@v4 # Optimized to use a more specific version
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
@@ -136,7 +136,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body: |
-          - 本项目是基于Hanwckf源代码编译大分区固件，使用默认配置，**适用于H3C-NX30Pro设备**，纯净版无任何第三方软件包。
+          - 本项目是基于Hanwckf源代码编译大分区固件，使用默认配置，适用于H3C-NX30Pro设备，纯净版无任何第三方软件包。
           - 历史版本将自动保留在下方。
           - 默认IP：192.168.1.1
           - 默认账号：root
