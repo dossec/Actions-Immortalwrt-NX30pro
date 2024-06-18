@@ -20,6 +20,12 @@ rm -rf feeds/packages/lang/golang
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/small/luci-app-mosdns
+rm -rf feeds/small/mosdns
+rm -rf feeds/kenzo/luci-app-openclash
+rm -rf feeds/kenzo/luci-app-adguardhome
+rm -rf feeds/kenzo/adguardhome
+rm -rf feeds/small/v2ray-geodata
 git clone https://github.com/kongfl888/luci-app-adguardhome.git package/luci-app-adguardhome
 git clone --depth=1 https://github.com/vernesong/OpenClash.git package/luci-app-openclash
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
