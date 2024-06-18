@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/Axiu0823/nx30pro_112m_immortalwrt-mt798x
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/Axiu0823/immortalwrt-mt798x
+  REPO_BRANCH: nx30pro_openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: clean.config
   DIY_P1_SH:  clean_diy-part1.sh
