@@ -9,6 +9,7 @@ env:
   REPO_BRANCH: rax3000m256m_openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: rax3000m_256m.config
+  DIY_P0_SH:  rax3000m_256m_diy-part0.sh
   DIY_P1_SH:  rax3000m_256m_diy-part1.sh
   DIY_P2_SH:  rax3000m_256m_diy-part2.sh
   UPLOAD_BIN_DIR: true
