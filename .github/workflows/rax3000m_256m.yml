@@ -7,7 +7,7 @@ on:
 env:
   REPO_URL: https://github.com/Axiu0823/immortalwrt-mt798x
   REPO_BRANCH: rax3000m256m_openwrt-21.02
-  FEEDS_CONF: rax3000m_256m_feeds.conf.default
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: rax3000m_256m.config
   DIY_P1_SH:  rax3000m_256m_diy-part1.sh
   DIY_P2_SH:  rax3000m_256m_diy-part2.sh
