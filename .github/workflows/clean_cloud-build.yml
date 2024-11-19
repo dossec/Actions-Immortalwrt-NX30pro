@@ -138,9 +138,9 @@ jobs:
         body: |
           - 本项目是基于Hanwckf源代码编译大分区固件，使用默认配置，适用于H3C-NX30Pro设备，纯净版无任何第三方软件包。
           - 历史版本将自动保留在下方。
-          - 默认IP：192.168.1.1
+          - 默认IP：192.168.6.1
           - 默认账号：root
-          - 默认密码：(空)
+          - 默认密码：password
           - 源码更新详情[点击这里查看](https://github.com/hanwckf/immortalwrt-mt798x/commits/openwrt-21.02/)
           - **请仔细检查MD5以确保完整性后再进行刷入！**
           - 刷入前请使用237的大分区uboot[传送门](https://github.com/Axiu0823/Actions-OpenWrt/tree/main/uboot)
