@@ -1,4 +1,4 @@
-name: clean_cloud-build
+name: nx30pro_cloud-build
 
 on:
   repository_dispatch:
