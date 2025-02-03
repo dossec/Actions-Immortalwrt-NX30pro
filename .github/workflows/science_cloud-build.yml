@@ -10,8 +10,8 @@ env:
   REPO_BRANCH: nx30pro_openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: science.config
-  DIY_P1_SH:  science_diy-part1.sh
-  DIY_P2_SH:  science_diy-part2.sh
+  DIY_P1_SH:  science_cloud-part1.sh
+  DIY_P2_SH:  science_cloud-part2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
