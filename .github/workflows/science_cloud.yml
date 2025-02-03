@@ -1,4 +1,4 @@
-name: science_cloud-build
+name: science_cloud
 
 on:
   repository_dispatch:
