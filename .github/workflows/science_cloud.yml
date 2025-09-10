@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4 # Optimized to use a more specific version
+      uses: actions/checkout@main # Optimized to use a more specific version
 
     - name: Initialization environment
       env:
