@@ -41,6 +41,11 @@ wifi reload
 exit 0
 EOF
 
+# Configure mtd-rw
+if ! grep -q "insmod mtd-rw i_want_a_brick=1" package/base-files/files/etc/rc.local; then
+    sed -i "/exit 0/i insmod mtd-rw i_want_a_brick=1" package/base-files/files/etc/rc.local
+fi
+
 # download clash core
 curl -sL -m 30 --retry 2 https://fastly.jsdelivr.net/gh/vernesong/OpenClash@core/master/meta/clash-linux-arm64.tar.gz -o /tmp/clash.tar.gz
 tar zxvf /tmp/clash.tar.gz -C /tmp >/dev/null 2>&1
